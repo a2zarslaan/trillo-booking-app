@@ -1,0 +1,72 @@
+/*
+COLORS
+
+Primary: #eb2f64
+Primary light: #FF3366
+Primary dark: #BA265D
+
+Grey light 1: #faf9f9
+Grey light 2: #f4f2f2
+Grey light 3: #f0eeee
+Grey light 4: #ccc
+
+Grey dark 1: #333
+Grey dark 2: #777
+Grey dark 3: #999
+
+*/
+
+//To use the variables, we'll have to put them in a declaration block (scope). But that means we want them in a place which is available everywhere. And that one place is the root pseudo class
+:root {
+  //the varibale names need to be preceeded by double hyphen
+  --color-primary: #eb2f64;
+  --color-primary-light: #ff3366;
+  --color-primary-dark: #ba265d;
+
+  --color-grey-light-3: #f0eeee;
+  --color-grey-light-2: #f4f2f2;
+  --color-grey-light-4: #ccc;
+  --color-grey-light-1: #faf9f9;
+
+  --color-grey-dark-1: #333;
+  --color-grey-dark-2: #777;
+  --color-grey-dark-3: #999;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+html {
+  box-sizing: border-box;
+  font-size: 62.5%; //1rem = 10px, 10px/16px = 62.5%
+}
+
+body {
+  font-family: "Open Sans", sans-serif; //use sans-serif if Open Sans doesn't work
+  font-weight: 400;
+  line-height: 1.6rem;
+
+  //variables in CSS are written inside var function. This and bg size property will lead to narrow tiles because the bg gradient will only be for the body element, that is just one line currently, after that there will be tiling. To prevent it, we'll use the background-repeat property
+  background-image: linear-gradient(
+    to right bottom,
+    var(--color-primary-light),
+    var(--color-primary-dark)
+  );
+  background-size: cover;
+
+  //to prevent tiling
+  background-repeat: no-repeat;
+
+  //setting minimum height to 100vh
+  min-height: 100vh;
+
+  color: var(--color-grey-dark-2);
+}
