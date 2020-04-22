@@ -1,0 +1,34 @@
+.container {
+  max-width: 120rem;
+  margin: 8rem auto;
+  background-color: var(--color-grey-light-1);
+
+  //we cannot just use colors as variables, we can use other things as well, so we'll create a variable for the values inside box-shadow
+  box-shadow: var(--shadow-dark);
+
+  min-height: 50rem;
+}
+
+.header {
+  height: 7rem;
+  background-color: #fff;
+  border-bottom: var(--color-grey-light-2);
+}
+
+.content {
+  display: flex;
+}
+
+.sidebar {
+  background-color: var(--color-grey-dark-1);
+
+  //flex-grow, shrink and basis in one single property, in order. We don't want the element to grow or shrink so we just give it a width. We don't have to give a shrink value as due to the percentages, the element will shrink itself when container size is smaller
+  flex: 0 0 18%;
+}
+
+.hotel-view {
+  background-color: #fff;
+
+  //here we want the element to grow as much space it gets so we'll set flex-grow to 1, using flex shorthand property
+  flex: 1;
+}
