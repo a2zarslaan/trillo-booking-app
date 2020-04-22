@@ -30,6 +30,13 @@
 
   //flex-grow, shrink and basis in one single property, in order. We don't want the element to grow or shrink so we just give it a width. We don't have to give a shrink value as due to the percentages, the element will shrink itself when container size is smaller
   flex: 0 0 18%;
+
+  //here we're setting the component as a flex container, above we're using the properties of flexbox as this component itself is inside a flex container
+  display: flex;
+
+  //to create a space between legal text and navbar items
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .hotel-view {

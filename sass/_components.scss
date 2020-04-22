@@ -133,3 +133,84 @@
     margin-right: 1rem;
   }
 }
+
+////////////////////////////////
+//side
+
+.side-nav {
+  font-size: 1.4rem;
+  list-style: none;
+  margin-top: 3.5rem;
+
+  &__item {
+    //for hovering effect's absolute position below
+    position: relative;
+
+    &:not(::last-child) {
+      margin-bottom: 0.5rem;
+    }
+  }
+
+  //to create the hover effect
+  &__item::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 3px;
+    background-color: var(--color-primary);
+    transform: scaleY(0);
+
+    //we can add different transitions for different properties
+    transition: transform 0.2s, width 0.4s cubic-bezier(1, 0, 0, 1) 0.2s,
+      background-color 0.1s; //this animation for width will take .4s and will start with a delay of .2s
+  }
+
+  &__item:hover::before,
+  &__item--active::before {
+    transform: scaleY(1);
+    width: 100%;
+  }
+
+  //color changing on hover
+  &__item:active::before {
+    background-color: var(--color-primary-light);
+  }
+
+  &__link:link,
+  &__link:visited {
+    color: var(--color-grey-light-1);
+    text-decoration: none;
+    text-transform: uppercase;
+    display: block;
+    padding: 1.5rem 3rem;
+
+    //z-index only works when we have a specified position
+    position: relative;
+    z-index: 100;
+
+    display: flex;
+    align-items: center;
+  }
+
+  &__icon {
+    //setting a size for the icons
+    width: 1.75rem;
+    height: 1.75rem;
+
+    margin-right: 2rem;
+
+    //using the color of the parent
+    fill: currentColor;
+  }
+}
+
+////////////////////////
+//legal text
+.legal {
+  font-size: 1.2rem;
+  color: var(--color-grey-light-4);
+  text-align: center;
+  padding: 2.5rem;
+}
