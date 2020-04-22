@@ -2,43 +2,134 @@
 //logo
 .logo {
   height: 3.25rem;
+  margin-left: 3rem;
 }
 
 /////////////////////////////////////////
 //search
 .search {
+  flex: 0 0 40%;
+
+  //to center the search icon vertically and horizontally
+  display: flex;
+  align-items: center;
+  justify-content: center;
   &__input {
+    font-family: inherit;
+    font-size: inherit;
+    color: inherit;
+    background-color: var(--color-grey-light-2);
+    border: none;
+    padding: 0.7rem 2rem;
+    border-radius: 100px;
+    width: 90%;
+    transition: all 0.2s;
+
+    //to get the search icon inside of this container, we extend it a bit towards the right
+    margin-right: -3.5rem;
+
+    &:focus {
+      outline: none;
+      width: 100%;
+      background-color: var(--color-grey-light-3);
+    }
+
+    //stylising the placeholder text
+    &::-webkit-input-placeholder {
+      font-weight: 100;
+      color: var(--color-grey-light-4);
+    }
+  }
+
+  &__input:focus + &__button {
+    background-color: var(--color-grey-light-3);
   }
   &__button {
+    border: none;
+    background-color: var(--color-grey-light-2);
+
+    &:focus {
+      outline: none;
+    }
+
+    &:active {
+      //to move the button down when we click it, to create a pressing effect
+      transform: translateY(2px);
+    }
   }
   &__icon {
     height: 2rem;
     width: 2rem;
+
+    //to change the color of the SVG icon, we use fill property
+    fill: var(--color-grey-dark-3);
   }
 }
 
 /////////////////////////////////////////
 //user navigation
 .user-nav {
+  //to make the nav bar elements take all the vertical space in the header
+  align-self: stretch;
+
+  display: flex;
+  align-items: center;
+
+  //the following selector selects all the user nav's direct children
+  & > * {
+    padding: 0 2rem;
+    cursor: pointer;
+
+    //top enable full vertical space hovering instead of small tab sized hover
+    height: 100%;
+
+    //to vertically center back the icons in the nav bar
+    display: flex;
+    align-items: center;
+  }
+
+  & > *:hover {
+    background-color: var(--color-grey-light-2);
+  }
+
   &__icon-box {
+    //for the aboslute positioning of the notification counting red bubble
+    position: relative;
   }
 
   &__icon {
     height: 2.25rem;
     width: 2.25rem;
+    fill: var(--color-grey-dark-2);
   }
 
   &__notification {
-  }
+    font-size: 0.8rem;
+    height: 1.75rem;
+    width: 1.75rem;
 
-  &__user {
+    //to make the red bubble round
+    border-radius: 50%;
+
+    background-color: var(--color-primary);
+    color: #fff;
+
+    //flexbox doesn't give us a way to perfectly position an element exactly where we want it, so we'll use absolute positioning for that.
+    position: absolute;
+    top: 1.5rem;
+    right: 1.1rem;
+
+    //to center the notification count text inside the red bubble
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 
   &__user-photo {
     height: 3.75rem;
     border-radius: 50%;
-  }
 
-  &__user-name {
+    //to create some separation between the photo and the name
+    margin-right: 1rem;
   }
 }
