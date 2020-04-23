@@ -214,3 +214,138 @@
   text-align: center;
   padding: 2.5rem;
 }
+
+////////////////////////
+//gallery
+.gallery {
+  display: flex;
+  &__photo {
+    width: 100%;
+
+    //to avoid the white space under the images, we're turning them to block instead of inline. Inline images will have a small white space under them. We can also use inline-block and that would also solve the problem
+    display: block;
+  }
+}
+
+////////////////////////
+//hotel overview
+.overview {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--color-grey-light-2);
+
+  &__heading {
+    font-size: 2.5rem;
+    font-weight: 300;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    padding: 1.5rem 3rem;
+  }
+
+  &__stars {
+    // this will occupy all the avaialble space, so it'll push all the elements adjacent to it, to the corner, we'll use flex-grow as 1. But the problem here is that the stars element will take up the whole space between itself and the adjacent element. To solver it, we will use margin-right: auto
+    //Margin auto is a very powerful trick combined with flexbox as it helps position elements in weird situations like this
+    //flex: 1;
+
+    margin-right: auto;
+
+    //the stars are SVG elements, and just like inline elements, SVG elements also have a small whitespace udner them, which will cause misalignment or unexpected behavior. Hence we're converting their parent element, that is, the stars container to flex to remove the white space under them. We could have also done it by reducing the line-height and font-size to zero, but just changing the display of the parent element seems more straightforward.
+    display: flex;
+  }
+
+  &__icon-star,
+  &__icon-location {
+    width: 1.75rem;
+    height: 1.75rem;
+    fill: var(--color-primary);
+  }
+
+  &__location {
+    font-size: 1.2rem;
+    display: flex;
+    align-items: center;
+  }
+
+  &__icon-location {
+    margin-right: 0.5rem;
+  }
+
+  &__rating {
+    background-color: var(--color-primary);
+    color: #fff;
+    margin-left: 3rem;
+    padding: 0 2.25rem;
+    align-self: stretch;
+
+    //to center the contents of this container
+    display: flex;
+
+    //to prevent elements from coming side by side
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &__rating-count {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+  }
+
+  &__rating-average {
+    font-size: 2.25rem;
+    font-weight: 300;
+  }
+}
+
+////////////////////////
+//button inline
+.btn-inline {
+  border: none;
+  color: var(--color-primary);
+
+  //forcing font-size inheritance will make the button more modular and more reusable. We can throw it anywhere and it will size itlsef according to the parent's font-size
+  font-size: inherit;
+
+  //using currentcolor to make the button more reusbale again. So when we hover on the element, the border will automatically take up the color that the element is supposed to take on hover. This means we need to write less code
+  border-bottom: 1px solid currentColor;
+
+  padding-bottom: 2px;
+  display: inline-block;
+
+  //making the bg transparent will again make the button more reusable, we can throw it anywhere and get  a nice looking button
+  background-color: transparent;
+
+  cursor: pointer;
+  transition: 0.2s;
+
+  &:hover {
+    color: var(--color-grey-dark-1);
+  }
+
+  &:focus {
+    //to remove the defailt blue border on focus
+    outline: none;
+
+    //infinite keyword can make the animation last infinitely long as long as the condition is satisfied
+    animation: pulsate 1s infinite;
+  }
+}
+
+//creating the pulsating animation
+@keyframes pulsate {
+  0% {
+    transform: scale(1);
+    box-shadow: none;
+  }
+
+  50% {
+    transform: scale(1.05);
+    box-shadow: 0 1rem 4rem rgba(0, 0, 0, 0.25);
+  }
+
+  100% {
+    transform: scale(1);
+    box-shadow: none;
+  }
+}
