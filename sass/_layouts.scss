@@ -14,7 +14,7 @@
   font-size: 1.4rem;
   height: 7rem;
   background-color: #fff;
-  border-bottom: 1px solid var(--color-grey-light-2);
+  border-bottom: var(--line);
 
   display: flex;
   justify-content: space-between;
@@ -43,5 +43,32 @@
   background-color: #fff;
 
   //here we want the element to grow as much space it gets so we'll set flex-grow to 1, using flex shorthand property
+  flex: 1;
+}
+
+.detail {
+  display: flex;
+  padding: 4.5rem;
+  background-color: var(--color-grey-light-1);
+  border: var(--line);
+}
+
+//description and user-reviews are kept side by side as they are siblings according to html structure
+.description {
+  font-size: 1.4rem;
+  background-color: #fff;
+  box-shadow: var(--shadow-light);
+  padding: 3rem;
+
+  //we want this element to take 60% of the width, hence flex-baisis here is 60%
+  flex: 0 0 60%;
+
+  margin-right: 4.5rem;
+}
+
+.user-reviews {
+  background-color: green;
+
+  //we want this element to take the width remaining out of the 60% taken by description element, hence flex-grow is 1
   flex: 1;
 }

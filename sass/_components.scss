@@ -233,7 +233,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  border-bottom: 1px solid var(--color-grey-light-2);
+  border-bottom: var(--line);
 
   &__heading {
     font-size: 2.5rem;
@@ -347,5 +347,87 @@
   100% {
     transform: scale(1);
     box-shadow: none;
+  }
+}
+
+////////////////////////
+//paragraph
+
+//adding bottom margin for all children except for the last one. We could've used last-child, but that would not work because the second paragraph is not the last child of the document. last-of-type will select the last child of type paragraph
+.paragraph:not(:last-of-type) {
+  margin-bottom: 2rem;
+}
+
+////////////////////////
+//list
+.list {
+  list-style: none;
+  margin: 3rem 0;
+  padding: 3rem 0;
+  border-top: var(--line);
+  border-bottom: var(--line);
+
+  //putting list items side by side. The next two commands will put all list items next to each other without any space in between
+  display: flex;
+  flex-wrap: wrap;
+
+  &__item {
+    //50% width so that 2 elements can be side by side
+    flex: 0 0 50%;
+
+    margin-bottom: 0.7rem;
+  }
+
+  //we'll put the arrow icon before the list elements because it is generally a good practise. We could have put it in the &__item selector above but this is a better practise.
+  &__item::before {
+    content: "";
+    display: inline-block;
+    height: 2rem;
+    width: 2rem;
+    margin-right: 0.7rem;
+
+    //approach for older browsers
+    background-image: url(../img/chevron-thin-right.svg);
+    background-size: cover;
+
+    //CODE EDITOR SAYS THE WEBKIT PROPERTIES BELOW ARE NON STANDARD. SO USING THE REGULAR METHOD ABOVE
+    //approach for newer browsers, setting the whole block of area pink
+    //background-color: (--color-primary);
+    //similar to clipping, we'll put a mask on top of this background that is the shape of the icon, and that will make the icon look colored
+    //-webkit-mask-image: url(../img/chevron-thin-right.svg);
+    //-webkit-mask-size: cover;
+  }
+}
+
+////////////////////////
+//recommend
+.recommend {
+  font-size: 1.3rem;
+  color: var(--color-grey-dark-3);
+
+  display: flex;
+
+  //using the same trick to push the images to the right corner
+  align-items: center;
+
+  &__count {
+    //using the same trick to push the images to the right corner
+    margin-right: auto;
+  }
+
+  &__friends {
+  }
+
+  &__photo {
+    height: 4rem;
+    width: 4rem;
+    border-radius: 50%;
+    border: 3px solid #fff;
+    box-sizing: content-box;
+
+    //giving the images a negative margin to produce an overlap effect, but this will reduce the size of the images as the border will come inwards. We can solve that by using a box-sizing property that is not border-box, because border box does exactly what we don't want here to happen. So we'll set the box sizing back to content-box above, which is the default value.
+    &:not(:last-child) {
+      margin-right: -1.5rem;
+    }
   }
 }
