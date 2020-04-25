@@ -38,7 +38,7 @@
     align-content: space-around;
 
     //giving some height to header to give some free space as there are 2 lines now, search bar being on 2nd line
-    height: 12rem;
+    height: 11rem;
   }
 }
 
@@ -109,8 +109,8 @@
     margin-right: 3rem;
   }
 
-  //redusing side margins for sections and fixing smallre abnormalities for bp-small. Here are some conflicting declarations like margin right, but because of the correct order we'll achieve the desired effect
-  @media only screen and (max-width: $bp-medium) {
+  //redusing side margins for sections and fixing smaller abnormalities for bp-small. Here are some conflicting declarations like margin right, but because of the correct order we'll achieve the desired effect
+  @media only screen and (max-width: $bp-small) {
     margin-right: 0;
     margin-bottom: 3rem;
   }

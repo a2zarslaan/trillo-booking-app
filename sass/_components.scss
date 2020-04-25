@@ -23,7 +23,7 @@
     //to make the search bar take 100% of the empty width in a new line for bp-smallest
     flex: 0 0 100%;
 
-    //to make search bar look uniform with the bg
+    //to make search bar look uniform with the bg, the rounded corners will disappear and it will be end to end
     background-color: var(--color-grey-light-2);
   }
 
@@ -474,11 +474,17 @@
     background-size: cover;
 
     //CODE EDITOR SAYS THE WEBKIT PROPERTIES BELOW ARE NON STANDARD. SO USING THE REGULAR METHOD ABOVE
+    //we'll add a feature query here
+    //@supports (-webkit-mask-image: url()) or (mask-image: url()) {
     //approach for newer browsers, setting the whole block of area pink
     //background-color: (--color-primary);
     //similar to clipping, we'll put a mask on top of this background that is the shape of the icon, and that will make the icon look colored
     //-webkit-mask-image: url(../img/chevron-thin-right.svg);
     //-webkit-mask-size: cover;
+    //mask-image: url(../img/chevron-thin-right.svg);
+    //mask-size: cover;
+    //background-image: none;
+    //}
   }
 }
 
@@ -622,6 +628,10 @@
     font-weight: 300;
     text-transform: uppercase;
     margin-bottom: 2.5rem;
+
+    @media only screen and (max-width: $bp-small) {
+      font-size: 1.3rem;
+    }
   }
 }
 
