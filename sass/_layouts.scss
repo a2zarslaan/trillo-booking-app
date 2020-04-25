@@ -47,6 +47,7 @@
 }
 
 .detail {
+  font-size: 1.4rem;
   display: flex;
   padding: 4.5rem;
   background-color: var(--color-grey-light-1);
@@ -55,7 +56,8 @@
 
 //description and user-reviews are kept side by side as they are siblings according to html structure
 .description {
-  font-size: 1.4rem;
+  //giving the font size to parent then inheriting later
+  //font-size: 1.4rem;
   background-color: #fff;
   box-shadow: var(--shadow-light);
   padding: 3rem;
@@ -67,8 +69,13 @@
 }
 
 .user-reviews {
-  background-color: green;
-
   //we want this element to take the width remaining out of the 60% taken by description element, hence flex-grow is 1
   flex: 1;
+
+  //to align the show all button we could have used text-align: center but that would center all the content in the container too, which is undesired. That's why we'll use flexbox align items
+  display: flex;
+  flex-direction: column;
+
+  //now with the default preoperties the line under the button will stretch all the way to from left to the right of the container, because the default for align-items is stretch. We have to change it to center
+  align-items: center;
 }
