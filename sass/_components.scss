@@ -523,3 +523,87 @@
     z-index: 1;
   }
 }
+
+////////////////////////
+//cta
+
+.cta {
+  padding: 3.5rem 0;
+  text-align: center;
+
+  &__book-now {
+    font-size: 2rem;
+    font-weight: 300;
+    text-transform: uppercase;
+    margin-bottom: 2.5rem;
+  }
+}
+
+//////////////////////////
+//call to action
+
+.btn {
+  font-size: 1.5rem;
+  font-weight: 300;
+  text-transform: uppercase;
+  border-radius: 100px;
+  border: none;
+  background-image: linear-gradient(
+    to right,
+    var(--color-primary-light),
+    var(--color-primary-dark)
+  );
+  color: #fff;
+
+  //for absolute positioning of invisible part of the button
+  position: relative;
+
+  overflow: hidden;
+
+  cursor: pointer;
+
+  //selecting all the child elements to apply the repeated code on all of them, just to follow dry principle
+  & > * {
+    //to be able to use padding
+    display: inline-block;
+    height: 100%;
+    width: 100%;
+    transition: all 0.2s;
+  }
+
+  &__visible {
+    //padding will define the size of the button
+    padding: 2rem 7.5rem;
+  }
+
+  &__invisible {
+    position: absolute;
+    padding: 2rem 0;
+    left: 0;
+
+    //if we use percentages here, the element will move up exactly as much as the size of the element is, for eg, 100px high element will move up 100px to totlally disappear
+    top: -100%;
+  }
+
+  //change gradient on hover
+  &:hover {
+    background-image: linear-gradient(
+      to left,
+      var(--color-primary-light),
+      var(--color-primary-dark)
+    );
+  }
+
+  &:hover &__visible {
+    transform: translateY(100%);
+  }
+
+  &:hover &__invisible {
+    top: 0;
+  }
+
+  &:focus {
+    outline: none;
+    animation: pulsate 1s infinite;
+  }
+}
