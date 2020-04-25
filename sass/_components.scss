@@ -14,6 +14,19 @@
   display: flex;
   align-items: center;
   justify-content: center;
+
+  //changing the order in which elements appear in the top bar for bp-smallest
+  @media only screen and (max-width: $bp-smallest) {
+    //default order value is 0 for all elements, so when we give it value 1, it'll move to the end of the line
+    order: 1;
+
+    //to make the search bar take 100% of the empty width in a new line for bp-smallest
+    flex: 0 0 100%;
+
+    //to make search bar look uniform with the bg
+    background-color: var(--color-grey-light-2);
+  }
+
   &__input {
     font-family: inherit;
     font-size: inherit;
@@ -142,12 +155,30 @@
   list-style: none;
   margin-top: 3.5rem;
 
+  @media only screen and (max-width: $bp-medium) {
+    //to put navbar items beside each other for screens lower than 900px
+    display: flex;
+
+    //remove the top margin
+    margin: 0;
+  }
+
   &__item {
     //for hovering effect's absolute position below
     position: relative;
 
     &:not(::last-child) {
       margin-bottom: 0.5rem;
+
+      //removing the bottom margin for smaller screens
+      @media only screen and (max-width: $bp-medium) {
+        margin: 0;
+      }
+    }
+
+    //giving all the navbar items equal width for all screens below 900
+    @media only screen and (max-width: $bp-medium) {
+      flex: 1;
     }
   }
 
@@ -192,6 +223,18 @@
 
     display: flex;
     align-items: center;
+
+    //center aligning the navbar items for smaller screen sizes
+    @media only screen and (max-width: $bp-medium) {
+      justify-content: center;
+      padding: 2rem;
+    }
+
+    //fixing the problems with navbar text for smaller screen sizes. Here we want the icon to appear on top of text instead of the text wrapping to second line
+    @media only screen and (max-width: $bp-small) {
+      flex-direction: column;
+      padding: 1.5rem 0.5rem;
+    }
   }
 
   &__icon {
@@ -203,6 +246,14 @@
 
     //using the color of the parent
     fill: currentColor;
+
+    //dealing with the margin right of the icons, which is not letting it align to the center even with text0align as center. Right now the margin is at the top of the text not the side
+    @media only screen and (max-width: $bp-small) {
+      margin-right: 0;
+      margin-bottom: 0.7rem;
+      width: 1.5rem;
+      height: 1.5rem;
+    }
   }
 }
 
@@ -213,6 +264,11 @@
   color: var(--color-grey-light-4);
   text-align: center;
   padding: 2.5rem;
+
+  //removing legal text for screens smaller than 900px as it was shown just under the navbar
+  @media only screen and (max-width: $bp-medium) {
+    display: none;
+  }
 }
 
 ////////////////////////
@@ -241,6 +297,12 @@
     text-transform: uppercase;
     letter-spacing: 1px;
     padding: 1.5rem 3rem;
+
+    //fixing the font for smaller screen sizes
+    @media only screen and (max-width: $bp-small) {
+      font-size: 1.8rem;
+      padding: 1.25rem 2rem;
+    }
   }
 
   &__stars {
@@ -285,16 +347,28 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
+
+    @media only screen and (max-width: $bp-small) {
+      padding: 0 1.5rem;
+    }
   }
 
   &__rating-count {
     font-size: 0.8rem;
     text-transform: uppercase;
+
+    @media only screen and (max-width: $bp-small) {
+      font-size: 0.5rem;
+    }
   }
 
   &__rating-average {
     font-size: 2.25rem;
     font-weight: 300;
+
+    @media only screen and (max-width: $bp-small) {
+      font-size: 1.8rem;
+    }
   }
 }
 
@@ -425,6 +499,8 @@
   }
 
   &__friends {
+    //tp keep the images side by side all the time
+    display: flex;
   }
 
   &__photo {
@@ -436,7 +512,7 @@
 
     //giving the images a negative margin to produce an overlap effect, but this will reduce the size of the images as the border will come inwards. We can solve that by using a box-sizing property that is not border-box, because border box does exactly what we don't want here to happen. So we'll set the box sizing back to content-box above, which is the default value.
     &:not(:last-child) {
-      margin-right: -1.5rem;
+      margin-right: -2rem;
     }
   }
 }
@@ -451,6 +527,13 @@
 
   //for absolute positioning of the quotation mark
   position: relative;
+  overflow: hidden;
+
+  //reducing excess padding and extra whitespace for all screens below 900
+  @media only screen and (max-width: $bp-medium) {
+    padding: 2rem;
+    margin-bottom: 3rem;
+  }
 
   &__text {
     margin-bottom: 2rem;
@@ -460,8 +543,6 @@
 
     //z-index will only work if we set the position
     position: relative;
-
-    overflow: hidden;
   }
 
   &__user {
@@ -530,6 +611,11 @@
 .cta {
   padding: 3.5rem 0;
   text-align: center;
+
+  //reducing excess padding and extra whitespace for all screens below 900
+  @media only screen and (max-width: $bp-medium) {
+    padding: 2.5rem 0;
+  }
 
   &__book-now {
     font-size: 2rem;

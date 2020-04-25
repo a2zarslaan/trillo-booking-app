@@ -7,6 +7,16 @@
   box-shadow: var(--shadow-dark);
 
   min-height: 50rem;
+
+  //adding media queries for a desktop first strategy. What's important to note here is that we're going to use em as the unit and also we'll define a variable for the width
+  @media only screen and (max-width: $bp-largest) {
+    //removing the pink bg from the top
+    margin: 0;
+
+    //reducing the root font size on large bp will cause shrinkage of the container, and the pink bg will be visible again. To deal with it, we'll make width and max-width as 100%, both just to be on a safe side. But we'll still have pink bg at the bottom to deal with. It'll only show up at unusually long screens, otherwise it won't. When the wesite page takes the height of the viewport, this part of the pink bg won't show
+    max-width: 100%;
+    width: 100%;
+  }
 }
 
 .header {
@@ -19,10 +29,26 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+
+  @media only screen and (max-width: $bp-smallest) {
+    //to make the search bar go one line below for bp-smallest
+    flex-wrap: wrap;
+
+    //spacing search bar and header elements evenly
+    align-content: space-around;
+
+    //giving some height to header to give some free space as there are 2 lines now, search bar being on 2nd line
+    height: 12rem;
+  }
 }
 
 .content {
   display: flex;
+
+  //to put the navbar on top for 900px and smaller screens, we'll change flex direction
+  @media only screen and (max-width: $bp-medium) {
+    flex-direction: column;
+  }
 }
 
 .sidebar {
@@ -52,6 +78,16 @@
   padding: 4.5rem;
   background-color: var(--color-grey-light-1);
   border: var(--line);
+
+  //reducing excess padding and extra whitespace for all screens below 900
+  @media only screen and (max-width: $bp-medium) {
+    padding: 3rem;
+  }
+
+  //putting description and user reviews side by side for smaller screens (600px)
+  @media only screen and (max-width: $bp-small) {
+    flex-direction: column;
+  }
 }
 
 //description and user-reviews are kept side by side as they are siblings according to html structure
@@ -66,6 +102,18 @@
   flex: 0 0 60%;
 
   margin-right: 4.5rem;
+
+  //reducing excess padding and extra whitespace for all screens below 900
+  @media only screen and (max-width: $bp-medium) {
+    padding: 2rem;
+    margin-right: 3rem;
+  }
+
+  //redusing side margins for sections and fixing smallre abnormalities for bp-small. Here are some conflicting declarations like margin right, but because of the correct order we'll achieve the desired effect
+  @media only screen and (max-width: $bp-medium) {
+    margin-right: 0;
+    margin-bottom: 3rem;
+  }
 }
 
 .user-reviews {
